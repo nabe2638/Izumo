@@ -1,30 +1,70 @@
 # Izumo Project
 
-## 概要
-Izumo Projectは、Raspberry Pi 4で動作する軽量Linux OSを構築するプロジェクトです。
-
-USBで持ち運べるLinux環境を目標とし、初心者でも再現可能な構成を目指しています。
+作成日: 2026-06-30 (JST)
 
 ---
 
-## 特徴
-- Debian 13 (trixie) ベース
-- Raspberry Pi 4対応
-- 軽量デスクトップ（Xfce）
-- USBブート対応予定
-- GitHubで完全再現可能
+# 1. 概要
+
+Izumo Projectは、
+USBから起動できる軽量Linuxディストリビューションの開発プロジェクトです。
+
+初心者でも扱えるシンプルな構成と、
+GitHubで再現可能なビルド環境を目指します。
 
 ---
 
-## 現在フェーズ
-Phase 5（設計フェーズ完了）
+# 2. ディストリビューション
+
+- 名称: Izumo
+- ベース: Debian Stable (trixie)
+- デスクトップ: Xfce
 
 ---
 
-## 次のフェーズ
-Phase 6：最小ブート環境構築
+# 3. 主な構成
+
+- live-buildによるISO生成
+- Python3 + GTK4によるBuilder開発
+- 軽量・シンプル設計
 
 ---
 
-## リポジトリ
-https://github.com/nabe2638/Izumo
+# 4. ドキュメント構成
+
+docs/
+├── 00_Project.md
+├── 01_Architecture.md
+├── 02_Directory.md
+├── 03_BuildSystem.md
+├── 04_Builder.md
+├── 05_Roadmap.md
+├── 06_Test.md
+├── 07_Branding.md
+└── CHANGELOG.md
+
+---
+
+# 5. 開発方針
+
+- 推測で実装しない
+- 必ず実環境で確認する
+- GitHub再現性を最優先
+- 一度に1機能のみ開発
+
+---
+
+# 6. 最終目標
+
+- USBブート
+- Persistence
+- 日本語環境
+- Xfce軽量環境
+- GUI Builder（Izumo Builder）
+
+---
+
+# 7. 注意
+
+このプロジェクトは設計段階であり、
+実装はフェーズごとに段階的に進める。

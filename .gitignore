@@ -1,0 +1,35 @@
+# build outputs
+build.log
+output/
+.build/
+cache/
+chroot/
+
+# python cache
+__pycache__/
+*.pyc
+
+# builder runtime
+builder/cache/
+builder/output/
+
+# system files
+*.lock
+
+# logs
+*.log
+
+# live-build
+config/binary/
+config/bootstrap/
+config/chroot/
+cache/
+chroot/
+
+# build artifacts
+*.iso
+*.img
+*.log
+
+# system artifacts
+*.lock
