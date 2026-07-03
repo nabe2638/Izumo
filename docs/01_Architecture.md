@@ -1,119 +1,118 @@
-# MyLinux Project 設計書
+# Izumo Project 設計書
 
-作成日: 2026-06-30 (JST)
+作成日: 2026-06-30 (JST)  
+更新日: 2026-07-04 (JST)
 
 ---
 
 # 1. プロジェクト概要
 
 ## プロジェクト名
-MyLinux Project
+Izumo Project
 
 ## ディストリビューション名
-MyLinux
+Izumo
 
 ## Builder名
-MyLinux Builder
+Izumo Builder
 
 ---
 
-# 2. 開発目的
+# 2. プロジェクト概要
 
-初心者でも使いやすく、
-USBメモリから起動できる軽量Linuxディストリビューションを開発する。
+USB起動可能な軽量Linuxディストリビューションを構築する。
 
-GitHubで公開し、
-誰でも同じ手順でビルドできることを品質基準とする。
+目的：
+- 初心者向けLinux環境
+- 完全再現可能なビルド
+- 軽量デスクトップ（Xfce）
 
 ---
 
-# 3. 開発ルール
+# 3. システムアーキテクチャ
 
-開発は必ず以下の順序で行う。
+## 3.1 基盤構成
 
-設計
+- Debian Stable (trixie)
+- Xfce
+- systemd
+- live-build
+
+---
+
+## 3.2 コンポーネント構成（抽象設計）
+
+Izumoは以下の論理構造で構成される：
+
+- builder（GUI操作層）
+- config（ビルド定義層）
+- live-build（生成エンジン）
+- output（成果物層）
+
+---
+
+## 3.3 ビルド生成領域（抽象定義）
+
+以下は生成プロセスにおける中間・成果物領域である：
+
+- binary/ ＝ ISO生成中間構造
+- chroot/ ＝ ビルド実行環境
+- cache/ ＝ 再利用キャッシュ
+- .build/ ＝ 内部制御領域
+- output/ ＝ 最終成果物
+
+※すべてGit管理対象外
+
+---
+
+# 4. ビルドフロー
+
+lb config
 ↓
-実装
+lb build
 ↓
-テスト
-↓
-Git Commit
-
-設計変更が必要な場合は、
-・理由を説明する
-・設計書を更新する
-・合意後に実装する
+output/ にISO生成
 
 ---
 
-# 4. 開発環境
+# 5. builder（抽象層）
 
-開発マシン
-Raspberry Pi 4 (8GB)
+GUI操作によるビルド制御
 
-OS
-Debian GNU/Linux 13 (Trixie)
-
-Architecture
-arm64
-
-Python
-3.13.5
-
-Git
-2.47.3
-
-Locale
-ja_JP.UTF-8
+役割：
+- live-buildの簡易操作
+- 初心者向けUI
+- ビルド実行制御
 
 ---
 
-# 5. プロジェクト構成
+# 6. config（定義層）
 
-MyLinux/
-assets/
-branding/
-config/
-docs/
-live-build/
-output/
-src/
-tests/
-tools/
+ビルド仕様の中心
 
-build.py
-pyproject.toml
-setup.py
-README.md
-LICENSE
-.gitignore
+- package-lists
+- hooks
+- includes
+- bootloader
+- apt設定
 
 ---
 
-# 6. 開発ポリシー
+# 7. 設計ルール
 
-推測で実装しない。
-
-必ず
-・実際の設定
-・実際のログ
-・実際のバージョン
-・実際のファイル
-
-を確認してから実装する。
-
-未確認事項は「未確認」と記載する。
-
----
-
-# 7. GitHub公開方針
-
-ソースコードのみ管理する。
-生成物はGit管理対象外とする。
+- 実装詳細はDirectoryへ委譲
+- Architectureは抽象構造のみ記述
+- 推測ではなく実態ベース設計
+- 再現性を最優先
 
 ---
 
 # 8. 品質基準
 
-「動けばよい」ではなく、
-GitHubから誰でも再現できることを品質基準とする。
+lb buildで完全再現可能であること
+
+---
+
+# 9. 注意事項
+
+MyLinuxは完全廃止
