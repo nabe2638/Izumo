@@ -1,35 +1,54 @@
-# build outputs
-build.log
-output/
+# ==================================================
+# Izumo Project
+# Git Ignore
+# ==================================================
+
+# --------------------------------------------------
+# live-build build artifacts
+# --------------------------------------------------
 .build/
+builder/.build/
+config/.build/
+
+binary/
+binary.modified_timestamps
+
 cache/
 chroot/
 
-# python cache
-__pycache__/
-*.pyc
+chroot.files
+chroot.packages.install
+chroot.packages.live
 
-# builder runtime
+live-image-*.contents
+live-image-*.files
+live-image-*.packages
+
+*.iso
+*.img
+
+config/binary
+config/bootstrap
+config/chroot
+
+# --------------------------------------------------
+# Builder
+# --------------------------------------------------
 builder/cache/
 builder/output/
 
-# system files
-*.lock
+# --------------------------------------------------
+# Python
+# --------------------------------------------------
+__pycache__/
+*.pyc
 
-# logs
+# --------------------------------------------------
+# Logs
+# --------------------------------------------------
 *.log
 
-# live-build
-config/binary/
-config/bootstrap/
-config/chroot/
-cache/
-chroot/
-
-# build artifacts
-*.iso
-*.img
-*.log
-
-# system artifacts
+# --------------------------------------------------
+# Lock files
+# --------------------------------------------------
 *.lock

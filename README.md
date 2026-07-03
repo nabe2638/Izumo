@@ -1,6 +1,7 @@
 # Izumo Project
 
 作成日: 2026-06-30 (JST)
+更新日: 2026-07-02 (JST)
 
 ---
 
@@ -51,6 +52,7 @@ docs/
 - 必ず実環境で確認する
 - GitHub再現性を最優先
 - 一度に1機能のみ開発
+- live-build の生成物（binary/、cache/、chroot/、ISO など）は Git 管理対象外とする
 
 ---
 

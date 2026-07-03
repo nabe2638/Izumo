@@ -1,6 +1,6 @@
 # CHANGELOG.md（変更履歴）
 
-**日付：2026-06-30 JST**
+更新日：2026-07-02 (JST)
 
 ---
 
@@ -37,3 +37,14 @@
 - docs/04_Builder.md 作成
 - README.md 作成・更新
 - ドキュメント構造整理完了
+
+---
+
+# ■ Repository Cleanup（2026-07-02）
+
+- .gitignore を整理
+- live-build の生成物を Git 管理対象外へ変更
+- git rm --cached により生成物の Git 管理を解除
+- README.md 更新
+- docs/03_BuildSystem.md 更新
+- Build Artifact Policy を追加
