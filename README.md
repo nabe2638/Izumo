@@ -1,7 +1,7 @@
 # Izumo Project
 
 作成日: 2026-06-30 (JST)  
-更新日: 2026-07-05 (JST)
+更新日: 2026-07-06 (JST)
 
 ---
 
@@ -62,13 +62,10 @@ builder/
 ├── main.py
 ├── resources/
 ├── run_builder.sh
-├── src/
 ├── tests/
 └── ui/
     └── main_window.ui
 ```
-
-※ `src/` は移行確認のため一時的に残しています。
 
 ---
 
@@ -153,6 +150,8 @@ docs/
 
 - Milestone: M0
 - Pythonパッケージ構成への移行完了
+- `builder/src` 削除完了
 - GUI起動確認済み
 - `ModuleNotFoundError` 解消済み
+- Builder構成整理完了
 - ドキュメント整備を進行中

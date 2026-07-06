@@ -1,6 +1,6 @@
 # CHANGELOG.md（変更履歴）
 
-更新日：2026-07-05 (JST)
+更新日：2026-07-06 (JST)
 
 ---
 
@@ -13,6 +13,20 @@
 > （Phase 4・Phase 5）が含まれています。
 >
 > 履歴の改ざんは行わず、当時の記録をそのまま残しています。
+
+---
+
+# ■ Phase 7
+
+- `builder/src` の依存関係を調査
+- `main.py`、`run_builder.sh`、`izumo_builder` が `src` を参照していないことを確認
+- GUI起動テストを実施
+- `builder/src` を削除
+- `builder/src` 削除後のGUI起動テスト成功
+- Pythonパッケージ構成への移行完了
+- README.md 更新
+- `docs/01_Architecture.md` 更新
+- `docs/CHANGELOG.md` 更新
 
 ---
 

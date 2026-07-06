@@ -1,7 +1,7 @@
 # Izumo Project 設計書
 
 作成日: 2026-06-30 (JST)  
-更新日: 2026-07-05 (JST)
+更新日: 2026-07-06 (JST)
 
 ---
 
@@ -74,18 +74,22 @@ ISO生成
 
 ```text
 builder/
-
+├── assets/
+├── build.sh
+├── docs/
 ├── izumo_builder/
 │   ├── __init__.py
 │   ├── app.py
 │   └── builder.py
-│
 ├── main.py
+├── resources/
 ├── run_builder.sh
+├── tests/
 └── ui/
+    └── main_window.ui
 ```
 
-現在は互換性確認のため `src/` を一時的に保持している。
+Phase 7 において `builder/src` を削除し、Pythonパッケージ構成への移行を完了した。
 
 ---
 
@@ -173,7 +177,9 @@ output/
 
 # 9. 現在の状況
 
-- Pythonパッケージ化完了
+- Pythonパッケージ構成への移行完了
+- `builder/src` 削除完了
 - GUI起動確認済み
 - ModuleNotFoundError 解消済み
-- Phase 6-5 にてドキュメント整備中
+- Builder構成整理完了
+- Phase 7 ドキュメント更新中
