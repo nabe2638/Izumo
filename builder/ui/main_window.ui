@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+
+  <requires lib="gtk" version="4.0"/>
+
+  <object class="GtkWindow" id="main_window">
+    <property name="title">Izumo Builder</property>
+    <property name="default-width">900</property>
+    <property name="default-height">600</property>
+
+    <child>
+      <object class="GtkBox" id="root_box">
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <property name="margin-top">10</property>
+        <property name="margin-bottom">10</property>
+        <property name="margin-start">10</property>
+        <property name="margin-end">10</property>
+
+        <!-- ボタン -->
+        <child>
+          <object class="GtkBox" id="button_box">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+
+            <child>
+              <object class="GtkButton" id="build_button">
+                <property name="label">Build ISO</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="stop_button">
+                <property name="label">Stop</property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+        <!-- プログレスバー -->
+        <child>
+          <object class="GtkProgressBar" id="progress_bar">
+            <property name="show-text">true</property>
+          </object>
+        </child>
+
+        <!-- ログ -->
+        <child>
+          <object class="GtkScrolledWindow" id="log_scroll">
+            <property name="vexpand">true</property>
+
+            <child>
+              <object class="GtkTextView" id="log_view">
+                <property name="editable">false</property>
+                <property name="wrap-mode">word</property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+  </object>
+
+</interface>

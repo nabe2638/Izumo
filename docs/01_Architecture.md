@@ -1,19 +1,22 @@
 # Izumo Project 設計書
 
 作成日: 2026-06-30 (JST)  
-更新日: 2026-07-04 (JST)
+更新日: 2026-07-05 (JST)
 
 ---
 
 # 1. プロジェクト概要
 
 ## プロジェクト名
+
 Izumo Project
 
 ## ディストリビューション名
+
 Izumo
 
 ## Builder名
+
 Izumo Builder
 
 ---
@@ -22,10 +25,12 @@ Izumo Builder
 
 USB起動可能な軽量Linuxディストリビューションを構築する。
 
-目的：
+目的
+
 - 初心者向けLinux環境
 - 完全再現可能なビルド
 - 軽量デスクトップ（Xfce）
+- 保守性の高いPythonパッケージ構成
 
 ---
 
@@ -37,58 +42,107 @@ USB起動可能な軽量Linuxディストリビューションを構築する。
 - Xfce
 - systemd
 - live-build
+- Python3
+- GTK4
 
 ---
 
-## 3.2 コンポーネント構成（抽象設計）
+## 3.2 コンポーネント構成
 
-Izumoは以下の論理構造で構成される：
-
-- builder（GUI操作層）
-- config（ビルド定義層）
-- live-build（生成エンジン）
-- output（成果物層）
-
----
-
-## 3.3 ビルド生成領域（抽象定義）
-
-以下は生成プロセスにおける中間・成果物領域である：
-
-- binary/ ＝ ISO生成中間構造
-- chroot/ ＝ ビルド実行環境
-- cache/ ＝ 再利用キャッシュ
-- .build/ ＝ 内部制御領域
-- output/ ＝ 最終成果物
-
-※すべてGit管理対象外
+```text
+run_builder.sh
+        │
+        ▼
+main.py
+        │
+        ▼
+IzumoApp
+        │
+        ▼
+Builder
+        │
+        ▼
+live-build
+        │
+        ▼
+ISO生成
+```
 
 ---
 
-# 4. ビルドフロー
+## 3.3 Pythonパッケージ構成
 
+```text
+builder/
+
+├── izumo_builder/
+│   ├── __init__.py
+│   ├── app.py
+│   └── builder.py
+│
+├── main.py
+├── run_builder.sh
+└── ui/
+```
+
+現在は互換性確認のため `src/` を一時的に保持している。
+
+---
+
+# 4. 各コンポーネントの責務
+
+## run_builder.sh
+
+- Builderの起動
+- Python実行環境の開始
+
+---
+
+## main.py
+
+- アプリケーションのエントリーポイント
+- IzumoAppの起動
+
+---
+
+## izumo_builder.app
+
+役割
+
+- GUI初期化
+- GTKアプリケーション生成
+- Builderクラスの呼び出し
+
+---
+
+## izumo_builder.builder
+
+役割
+
+- GUIイベント処理
+- Buildボタン処理
+- Stopボタン処理
+- live-build実行制御
+
+---
+
+# 5. ビルドフロー
+
+```text
 lb config
-↓
+      │
+      ▼
 lb build
-↓
-output/ にISO生成
-
----
-
-# 5. builder（抽象層）
-
-GUI操作によるビルド制御
-
-役割：
-- live-buildの簡易操作
-- 初心者向けUI
-- ビルド実行制御
+      │
+      ▼
+output/
+```
 
 ---
 
 # 6. config（定義層）
 
-ビルド仕様の中心
+ビルド仕様を管理する。
 
 - package-lists
 - hooks
@@ -98,21 +152,28 @@ GUI操作によるビルド制御
 
 ---
 
-# 7. 設計ルール
+# 7. 設計方針
 
-- 実装詳細はDirectoryへ委譲
-- Architectureは抽象構造のみ記述
-- 推測ではなく実態ベース設計
-- 再現性を最優先
+- Pythonパッケージ構成を採用する
+- GUIとビルド処理を分離する
+- 実装詳細は各設計書へ委譲する
+- 推測ではなく実装に基づいて更新する
+- GitHubで100%再現できることを最優先とする
 
 ---
 
 # 8. 品質基準
 
-lb buildで完全再現可能であること
+- Builderが正常起動すること
+- ModuleNotFoundError が発生しないこと
+- GUIが表示されること
+- lb build が再現可能であること
 
 ---
 
-# 9. 注意事項
+# 9. 現在の状況
 
-MyLinuxは完全廃止
+- Pythonパッケージ化完了
+- GUI起動確認済み
+- ModuleNotFoundError 解消済み
+- Phase 6-5 にてドキュメント整備中
